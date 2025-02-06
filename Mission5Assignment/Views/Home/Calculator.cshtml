@@ -1,0 +1,67 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Calculator";
+}
+<h1>@ViewData["Title"]</h1>
+<h3>Need tutoring help? Fill out a request:</h3>
+<div class="container">
+    <form id="hoursForm">
+        <!-- Number of Hours -->
+        <div class="mb-3">
+            <label for="hoursInput" class="form-label">Enter Number of Hours:</label>
+            <input type="text" class="form-control" id="hoursInput" placeholder="Enter hours">
+            <div id="hoursError" class="text-danger" style="display:none;">Please enter a positive number of hours.</div>
+        </div>
+
+        <!-- Hourly Rate (non-editable) -->
+        <div class="mb-3">
+            <label for="hourlyRate" class="form-label">Hourly Rate:</label>
+            <input type="text" class="form-control" id="hourlyRate" value="50" readonly>
+        </div>
+
+        <!-- Button to Calculate Total -->
+        <div class="mb-3">
+            <button type="button" class="btn btn-primary" id="calculateBtn">Calculate Total</button>
+        </div>
+
+        <!-- Output Total -->
+        <div class="mb-3">
+            <label for="totalOutput" class="form-label">Total Amount:</label>
+            <input type="text" class="form-control" id="totalOutput" readonly>
+        </div>
+
+        <!-- Button to Navigate to Home -->
+        <div class="mt-3">
+            <a href="/" class="btn btn-secondary">Back to Home</a>
+        </div>
+    </form>
+</div>
+
+<!-- jQuery and Script -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Handle Calculate Button click
+        $('#calculateBtn').click(function () {
+            var hours = $('#hoursInput').val();
+            var hourlyRate = $('#hourlyRate').val();
+            var total = 0;
+
+            // Validate hours input (must be a positive number)
+            if ($.isNumeric(hours) && hours > 0) {
+                // Hide error message if input is valid
+                $('#hoursError').hide();
+
+                // Calculate total
+                total = hours * hourlyRate;
+
+                // Display the total in the output field
+                $('#totalOutput').val(total.toFixed(2)); // format to 2 decimal places
+            } else {
+                // Show error message if input is invalid
+                $('#hoursError').show();
+                $('#totalOutput').val(''); // clear total output
+            }
+        });
+    });
+</script>
