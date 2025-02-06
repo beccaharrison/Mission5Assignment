@@ -13,7 +13,7 @@
             <div id="hoursError" class="text-danger" style="display:none;">Please enter a positive number of hours.</div>
         </div>
 
-        <!-- Hourly Rate (non-editable) -->
+        <!-- Hourly Rate -->
         <div class="mb-3">
             <label for="hourlyRate" class="form-label">Hourly Rate:</label>
             <input type="text" class="form-control" id="hourlyRate" value="50" readonly>
@@ -30,14 +30,13 @@
             <input type="text" class="form-control" id="totalOutput" readonly>
         </div>
 
-        <!-- Button to Navigate to Home -->
+        <!-- Navigate to Home -->
         <div class="mt-3">
             <a href="/" class="btn btn-secondary">Back to Home</a>
         </div>
     </form>
 </div>
 
-<!-- jQuery and Script -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function () {
@@ -47,7 +46,7 @@
             var hourlyRate = $('#hourlyRate').val();
             var total = 0;
 
-            // Validate hours input (must be a positive number)
+            // Validate hours input 
             if ($.isNumeric(hours) && hours > 0) {
                 // Hide error message if input is valid
                 $('#hoursError').hide();
@@ -56,11 +55,11 @@
                 total = hours * hourlyRate;
 
                 // Display the total in the output field
-                $('#totalOutput').val(total.toFixed(2)); // format to 2 decimal places
+                $('#totalOutput').val(total.toFixed(2)); 
             } else {
-                // Show error message if input is invalid
+                // error message if input is invalid
                 $('#hoursError').show();
-                $('#totalOutput').val(''); // clear total output
+                $('#totalOutput').val(''); 
             }
         });
     });
